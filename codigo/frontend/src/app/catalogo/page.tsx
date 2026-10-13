@@ -1,77 +1,73 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
-import { Product, api, getCart, money, saveCart } from "@/lib/api";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Product, api, getCart, money, saveCart, syncUi } from "@/lib/api";
 
-export default function CatalogoPage() {
+function CatalogoInner() {
+  const params = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
-  const [q, setQ] = useState("");
-  const [category, setCategory] = useState("");
-  const [error, setError] = useState("");
-
-  const load = useCallback(async () => {
-    try {
-      setProducts(await api.products(q || undefined, category || undefined));
-      setError("");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "No se pudo cargar el catalogo");
-    }
-  }, [q, category]);
+  const [q, setQ] = useState(params.get("q") || "");
+  const [category, setCategory] = useState(params.get("category") || "");
 
   useEffect(() => {
-    void load();
-  }, [load]);
+    api.products(q || undefined, category || undefined).then(setProducts);
+  }, [q, category]);
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-display text-3xl text-[#0b1f33]">Catalogo YAuctions</h1>
-        <p className="text-sm text-slate-600">Busca y compra desde computadora, tablet o smartphone.</p>
+      <div className="surface p-6">
+        <h1 className="font-display text-4xl">Catalogo intermediado</h1>
+        <p className="mt-2 text-sm text-slate-600">Busca productos de YAuctions y agrega al carrito.</p>
+        <div className="mt-5 grid gap-3 md:grid-cols-[1fr_220px_auto]">
+          <input className="input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar por nombre o descripcion" />
+          <select className="input" value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="">Todas las categorias</option>
+            <option value="Electronica">Electronica</option>
+            <option value="Moda">Moda</option>
+            <option value="Coleccionables">Coleccionables</option>
+            <option value="Hogar">Hogar</option>
+            <option value="Musica">Musica</option>
+          </select>
+          <button className="btn" onClick={() => api.products(q || undefined, category || undefined).then(setProducts)}>Buscar</button>
+        </div>
       </div>
-      <div className="panel flex flex-col gap-3 p-4 md:flex-row">
-        <input className="input" placeholder="Buscar producto" value={q} onChange={(e) => setQ(e.target.value)} />
-        <select className="input md:max-w-xs" value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">Todas las categorias</option>
-          <option value="Coleccionables">Coleccionables</option>
-          <option value="Electronica">Electronica</option>
-          <option value="Moda">Moda</option>
-          <option value="Hogar">Hogar</option>
-          <option value="Musica">Musica</option>
-        </select>
-        <button className="btn" onClick={() => void load()}>Buscar</button>
-      </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((p) => (
-          <article key={p.id} className="panel overflow-hidden">
+          <article key={p.id} className="surface overflow-hidden">
             <Link href={`/producto/${p.id}`}>
-              <div className="h-44 bg-slate-200" style={{ backgroundImage: `url(${p.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="h-48 bg-slate-200" style={{ backgroundImage: `url(${p.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" }} />
             </Link>
-            <div className="space-y-2 p-4">
-              <p className="text-xs uppercase tracking-wide text-[#1f6f8b]">{p.category}</p>
-              <h2 className="font-medium">{p.title}</h2>
-              <p className="text-sm text-slate-500">JPY {p.priceJpy.toLocaleString()} · {money(p.priceLocal, p.currency)}</p>
+            <div className="space-y-3 p-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--sea)]">{p.category}</p>
+                <h2 className="mt-1 font-semibold">{p.title}</h2>
+                <p className="mt-1 text-sm text-slate-500">JPY {p.priceJpy.toLocaleString()} · {money(p.priceLocal, p.currency)}</p>
+              </div>
               <div className="flex gap-2">
-                <Link className="btn-ghost" href={`/producto/${p.id}`}>Ver</Link>
-                <button
-                  className="btn"
-                  onClick={() => {
-                    const cart = getCart();
-                    const existing = cart.find((c) => c.product.id === p.id);
-                    if (existing) existing.quantity += 1;
-                    else cart.push({ product: p, quantity: 1 });
-                    saveCart(cart);
-                    window.dispatchEvent(new Event("cl-sync"));
-                  }}
-                >
-                  Agregar
-                </button>
+                <Link className="btn-secondary" href={`/producto/${p.id}`}>Ver ficha</Link>
+                <button className="btn" onClick={() => {
+                  const cart = getCart();
+                  const existing = cart.find((c) => c.product.id === p.id);
+                  if (existing) existing.quantity += 1;
+                  else cart.push({ product: p, quantity: 1 });
+                  saveCart(cart);
+                  syncUi();
+                }}>Agregar</button>
               </div>
             </div>
           </article>
         ))}
       </div>
     </div>
+  );
+}
+
+export default function CatalogoPage() {
+  return (
+    <Suspense fallback={<div className="surface p-6">Cargando catalogo...</div>}>
+      <CatalogoInner />
+    </Suspense>
   );
 }

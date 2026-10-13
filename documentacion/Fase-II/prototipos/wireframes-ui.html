@@ -1,62 +1,69 @@
-﻿<!doctype html><html lang='es'><head><meta charset='utf-8'><title>Wireframes CompraLatino Fase II</title><style>
-  :root{--ink:#0b1f33;--sand:#f3e6c8;--coral:#c45c26;--sea:#1f6f8b;--line:#d5dde6}
-  *{box-sizing:border-box} body{margin:0;font-family:Georgia,serif;background:#eef2f6;color:var(--ink)}
-  .wrap{max-width:1100px;margin:24px auto;padding:0 16px}
-  .frame{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:28px}
-  .top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--ink);color:var(--sand)}
-  .nav a{color:#dce7f2;margin-left:12px;font:14px/1.2 system-ui;text-decoration:none}
-  .hero{min-height:280px;background:linear-gradient(120deg,#0b1f33ee,#1f6f8bcc),url(https://images.unsplash.com/photo-1555529902-5261145633bf?w=1200) center/cover;color:#fff;padding:48px}
-  .hero h1{font-size:42px;margin:0 0 8px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:18px}
-  .card{border:1px dashed var(--line);border-radius:12px;padding:14px;min-height:140px;background:#fafbfc}
-  .btn{display:inline-block;background:var(--coral);color:#fff;padding:10px 14px;border-radius:8px;font:14px system-ui;text-decoration:none}
-  .label{font:12px system-ui;color:#667}
-  h2{font-size:22px;margin:0 0 8px}
-  .kpi{font-size:28px;font-weight:700}
-  .bar{height:10px;background:#e8eef3;border-radius:99px;overflow:hidden;margin-top:8px}
-  .bar>i{display:block;height:100%;background:var(--sea)}
-  .note{font:13px system-ui;color:#456;margin:8px 0 18px}
-</style></head><body>
-<div class='wrap'>
-  <h1>Prototipos visuales CompraLatino (Fase II)</h1>
-  <p class='note'>Wireframes de baja-media fidelidad alineados a la arquitectura Next.js + API C# + Wompi + YAuctions.</p>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Wireframes CompraLatino</title>
+<style>
+  :root{--ink:#10263d;--paper:#f6f1e8;--line:#d7cfc0;--accent:#d3541a;--sea:#0f6e7a}
+  *{box-sizing:border-box} body{margin:0;font-family:Georgia,serif;background:linear-gradient(180deg,#f8f4ed,#ebe7dd);color:var(--ink)}
+  .wrap{max-width:1120px;margin:28px auto;padding:0 16px}
+  .bar{background:var(--ink);color:#f6f1e8;padding:10px 16px;font:12px/1.4 system-ui;display:flex;justify-content:space-between}
+  .nav{display:flex;gap:10px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-top:0;background:rgba(255,255,255,.8)}
+  .brand{font-size:28px;font-weight:700}
+  .search{flex:1;display:flex} .search input{flex:1;padding:10px;border:1px solid var(--line);border-radius:8px 0 0 8px}
+  .search button,.btn{background:var(--accent);color:#fff;border:0;padding:10px 14px;border-radius:8px;font:14px system-ui}
+  .search button{border-radius:0 8px 8px 0}
+  .hero{margin-top:18px;min-height:320px;border-radius:24px;overflow:hidden;background:linear-gradient(120deg,#10263dee,#0f6e7acc),url(https://images.unsplash.com/photo-1555529902-5261145633bf?w=1400) center/cover;color:#fff;padding:48px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+  .card{background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .thumb{height:140px;background:#dfe7ee center/cover}
+  .pad{padding:14px} .muted{color:#667;font:13px system-ui}
+  .admin{display:grid;grid-template-columns:220px 1fr;gap:16px;margin-top:28px}
+  .side{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}
+  .side a{display:block;padding:10px;border-radius:8px;text-decoration:none;color:inherit;font:14px system-ui}
+  .side a.active{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  table{width:100%;border-collapse:collapse;font:13px system-ui}
+  th,td{border-top:1px solid var(--line);padding:10px;text-align:left}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Prototipos UI CompraLatino</h1>
+  <p class="muted">Wireframes de media fidelidad alineados a la interfaz implementada.</p>
 
-  <div class='frame'>
-    <div class='top'><strong>CompraLatino</strong><div class='nav'><a>Catalogo</a><a>Carrito</a><a>Cuenta</a></div></div>
-    <div class='hero'>
-      <h1>CompraLatino</h1>
-      <p>Intermediacion de compras en YAuctions Japon</p>
-      <a class='btn' href='#'>Explorar catalogo</a>
-    </div>
+  <div class="bar"><span>Intermediacion YAuctions · Cobro Wompi</span><span>Seguimiento · Centro operativo</span></div>
+  <div class="nav">
+    <div class="brand">CompraLatino</div>
+    <div class="search"><input placeholder="Buscar en el catalogo..." /><button>Buscar</button></div>
+    <button class="btn">Carrito (2)</button>
+  </div>
+  <div class="hero">
+    <h2 style="font-size:48px;margin:0">CompraLatino</h2>
+    <p>Compra en YAuctions Japon con cuenta local y cobro Wompi</p>
+    <button class="btn">Explorar catalogo</button>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="thumb" style="background-image:url(https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600)"></div><div class="pad"><strong>Camara compacta</strong><div class="muted">Electronica · USD 359.26</div></div></div>
+    <div class="card"><div class="thumb" style="background-image:url(https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600)"></div><div class="pad"><strong>Reloj vintage</strong><div class="muted">Moda · USD 239.45</div></div></div>
+    <div class="card"><div class="thumb" style="background-image:url(https://images.unsplash.com/photo-1601814938122-77c0d41d4f5a?w=600)"></div><div class="pad"><strong>Figura edicion limitada</strong><div class="muted">Coleccionables · USD 102.53</div></div></div>
   </div>
 
-  <div class='frame'>
-    <div class='top'><strong>Catalogo</strong><div class='nav'><a>Buscar</a><div></div></div>
-    <div class='grid'>
-      <div class='card'><div class='label'>Categoria</div><h2>Producto A</h2><p>USD 00.00</p></div>
-      <div class='card'><div class='label'>Categoria</div><h2>Producto B</h2><p>USD 00.00</p></div>
-      <div class='card'><div class='label'>Categoria</div><h2>Producto C</h2><p>USD 00.00</p></div>
+  <div class="admin">
+    <div class="side">
+      <a class="active" href="#">Tablero BI</a>
+      <a href="#">Ordenes</a>
+      <a href="#">Bitacoras</a>
+    </div>
+    <div class="card pad">
+      <h3>Bitacoras Wompi / YAuctions</h3>
+      <table>
+        <tr><th>Proveedor</th><th>Accion</th><th>Resultado</th><th>Orden</th></tr>
+        <tr><td>Wompi</td><td>Webhook</td><td>Approved</td><td>CL-20261012-778201</td></tr>
+        <tr><td>YAuctions</td><td>ExecutePurchase</td><td>Success</td><td>CL-20261010-482193</td></tr>
+        <tr><td>YAuctions</td><td>ExecutePurchase</td><td>Rejected</td><td>CL-20261011-119844</td></tr>
+      </table>
     </div>
   </div>
-
-  <div class='frame'>
-    <div class='top'><strong>Detalle / Checkout</strong></div>
-    <div class='grid'>
-      <div class='card' style='min-height:220px'>Imagen producto</div>
-      <div class='card'>
-        <h2>Ficha</h2>
-        <p>Precio JPY + precio local</p>
-        <p>Boton agregar / pagar con Wompi</p>
-        <a class='btn' href='#'>Pagar con Wompi</a>
-      </div>
-    </div>
-  </div>
-
-  <div class='frame'>
-    <div class='top'><strong>Historial y recomendaciones</strong></div>
-    <div class='grid'>
-      <div class='card'><h2>Orden CL-...</h2><p>Estado: Completed</p><p>Pago: Approved</p></div>
-      <div class='card'><h2>Para ti</h2><p>Basado en historial</p></div>
-    </div>
-  </div>
-</div></body></html>
+</div>
+</body>
+</html>

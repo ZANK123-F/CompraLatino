@@ -2,37 +2,33 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { Product, api, getCart, money, saveCart } from "@/lib/api";
+import { Product, api, getCart, money, saveCart, syncUi } from "@/lib/api";
 
 export default function ProductoPage() {
   const params = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
-  const [error, setError] = useState("");
 
   useEffect(() => {
-    api.product(Number(params.id))
-      .then(setProduct)
-      .catch((err) => setError(err instanceof Error ? err.message : "Producto no encontrado"));
+    api.product(Number(params.id)).then(setProduct);
   }, [params.id]);
 
-  if (error) return <p className="text-red-600">{error}</p>;
-  if (!product) return <p>Cargando...</p>;
+  if (!product) return <div className="surface p-6">Cargando ficha...</div>;
 
   return (
-    <div className="grid gap-8 md:grid-cols-2">
-      <div className="panel overflow-hidden">
-        <div className="min-h-[320px] bg-slate-200" style={{ backgroundImage: `url(${product.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+    <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="surface overflow-hidden">
+        <div className="min-h-[420px] bg-slate-200" style={{ backgroundImage: `url(${product.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" }} />
       </div>
       <div className="space-y-4">
-        <p className="text-xs uppercase tracking-wide text-[#1f6f8b]">{product.category}</p>
-        <h1 className="font-display text-3xl text-[#0b1f33]">{product.title}</h1>
+        <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--sea)]">{product.category}</p>
+        <h1 className="font-display text-4xl">{product.title}</h1>
         <p className="text-slate-600">{product.description}</p>
-        <div className="panel p-4">
-          <p className="text-sm text-slate-500">Precio origen</p>
-          <p className="text-lg">JPY {product.priceJpy.toLocaleString()}</p>
-          <p className="mt-2 text-sm text-slate-500">Precio cobro estimado</p>
-          <p className="text-2xl font-semibold text-[#c45c26]">{money(product.priceLocal, product.currency)}</p>
-          <p className="mt-1 text-xs text-slate-500">Tasa FX {product.fxRate} · ID YAuctions {product.externalId}</p>
+        <div className="surface p-5">
+          <p className="text-sm text-slate-500">Precio origen YAuctions</p>
+          <p className="text-lg font-semibold">JPY {product.priceJpy.toLocaleString()}</p>
+          <p className="mt-3 text-sm text-slate-500">Precio de cobro estimado</p>
+          <p className="text-3xl font-bold text-[color:var(--accent)]">{money(product.priceLocal, product.currency)}</p>
+          <p className="mt-2 text-xs text-slate-500">FX {product.fxRate} · External ID {product.externalId}</p>
         </div>
         <button
           className="btn"
@@ -42,7 +38,7 @@ export default function ProductoPage() {
             if (existing) existing.quantity += 1;
             else cart.push({ product, quantity: 1 });
             saveCart(cart);
-            window.dispatchEvent(new Event("cl-sync"));
+            syncUi();
             window.location.href = "/carrito";
           }}
         >

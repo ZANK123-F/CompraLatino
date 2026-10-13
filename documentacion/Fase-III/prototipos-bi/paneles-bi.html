@@ -1,54 +1,117 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><title>Paneles BI CompraLatino</title>
-<style>
-body{margin:0;font-family:system-ui,sans-serif;background:#f6f1e8;color:#10263d}
-.wrap{max-width:1120px;margin:24px auto;padding:0 16px}
-.layout{display:grid;grid-template-columns:220px 1fr;gap:16px}
-.side,.panel{background:#fff;border:1px solid #d7cfc0;border-radius:16px;padding:14px}
-.side a{display:block;padding:10px;border-radius:8px;text-decoration:none;color:inherit}
-.side a.active{background:#f6f1e8;font-weight:700}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.kpi{background:#fff;border:1px solid #d7cfc0;border-radius:14px;padding:14px}
-.kpi b{display:block;font-size:28px;margin-top:8px}
-.bar{height:10px;background:#ebe4d7;border-radius:99px;overflow:hidden;margin:8px 0}
-.bar i{display:block;height:100%;background:#0f6e7a}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:10px;border-top:1px solid #d7cfc0;text-align:left}
-</style></head><body>
-<div class="wrap">
-  <h1>Prototipos paneles BI CompraLatino</h1>
-  <div class="layout">
-    <div class="side">
-      <a class="active" href="#">Tablero BI</a>
-      <a href="#">Ordenes</a>
-      <a href="#">Bitacoras</a>
-    </div>
-    <div>
-      <div class="kpis">
-        <div class="kpi">Ordenes totales<b>128</b></div>
-        <div class="kpi">Aprobacion Wompi<b>91.4%</b></div>
-        <div class="kpi">Exito YAuctions<b>87.2%</b></div>
-        <div class="kpi">Ingresos<b>USD 18,420</b></div>
-        <div class="kpi">Compensacion<b>6</b></div>
-        <div class="kpi">Clientes<b>74</b></div>
-      </div>
-      <div class="panel" style="margin-top:14px">
-        <h3>Ventas por dia</h3>
-        <div class="bar"><i style="width:48%"></i></div>
-        <div class="bar"><i style="width:66%"></i></div>
-        <div class="bar"><i style="width:58%"></i></div>
-        <div class="bar"><i style="width:90%"></i></div>
-      </div>
-      <div class="panel" style="margin-top:14px">
-        <h3>Bitacoras de integracion</h3>
-        <table>
-          <tr><th>Proveedor</th><th>Accion</th><th>Resultado</th><th>Orden</th></tr>
-          <tr><td>Wompi</td><td>Webhook</td><td>Approved</td><td>CL-20261012-778201</td></tr>
-          <tr><td>YAuctions</td><td>ExecutePurchase</td><td>Success</td><td>CL-20261010-482193</td></tr>
-          <tr><td>YAuctions</td><td>ExecutePurchase</td><td>Rejected</td><td>CL-20261011-119844</td></tr>
-        </table>
-      </div>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CompraLatino — Prototipos de inteligencia de negocios</title>
+  <style>
+    :root { --ink:#10263d; --paper:#f6f1e8; --line:#d7cfc0; --accent:#d3541a; --sea:#0f6e7a; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8f4ed, #ebe7dd);
+    }
+    .page { max-width: 1180px; margin: 0 auto; padding: 28px 18px 60px; }
+    h1 { font-family: Georgia, serif; font-size: 34px; margin: 0 0 8px; }
+    .lead { color: #5b6b7c; max-width: 760px; line-height: 1.5; margin-bottom: 24px; }
+    .layout { display: grid; grid-template-columns: 230px 1fr; gap: 16px; }
+    .side, .panel {
+      background: #fffdf8; border: 1px solid var(--line); border-radius: 18px;
+      box-shadow: 0 12px 28px rgba(16,38,61,.06);
+    }
+    .side { padding: 14px; height: fit-content; }
+    .side a {
+      display: block; text-decoration: none; color: inherit; padding: 11px 12px;
+      border-radius: 10px; margin-bottom: 4px; font-size: 14px;
+    }
+    .side a.active { background: #fff; font-weight: 700; box-shadow: 0 1px 4px rgba(16,38,61,.08); }
+    .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+    .kpi { background: #fffdf8; border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+    .kpi span { display:block; color:#667789; font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+    .kpi b { display:block; margin-top:10px; font-family: Georgia, serif; font-size:30px; }
+    .panel { padding: 18px; margin-bottom: 14px; }
+    .panel h2 { font-family: Georgia, serif; font-size: 22px; margin: 0 0 14px; }
+    .bar { height: 10px; background: #ebe4d7; border-radius: 999px; overflow: hidden; margin: 8px 0 14px; }
+    .bar i { display:block; height:100%; background: var(--sea); }
+    .row { display:flex; justify-content:space-between; font-size:13px; color:#526274; }
+    table { width:100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align:left; padding: 11px 8px; border-top: 1px solid var(--line); }
+    th { color:#667789; }
+    .badge { display:inline-block; padding:4px 8px; border-radius:999px; background:#d8eef1; color:var(--sea); font-weight:700; font-size:12px; }
+    .ok { background:#e7f7ee; color:#1f7a4d; }
+    .warn { background:#fff4d8; color:#9a6b12; }
+    @media (max-width: 900px) {
+      .layout, .kpis { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>CompraLatino — Prototipos de inteligencia de negocios</h1>
+    <p class="lead">
+      Esquemas del panel administrativo para monitoreo de órdenes, conversión de pagos Wompi,
+      resultados de ejecución en YAuctions y bitácoras de integración.
+    </p>
+
+    <div class="layout">
+      <aside class="side">
+        <a class="active" href="#">Tablero BI</a>
+        <a href="#">Órdenes</a>
+        <a href="#">Bitácoras</a>
+        <a href="#">Volver a tienda</a>
+      </aside>
+
+      <main>
+        <div class="kpis">
+          <div class="kpi"><span>Órdenes totales</span><b>128</b></div>
+          <div class="kpi"><span>Ingresos aprobados</span><b>USD 18,420</b></div>
+          <div class="kpi"><span>Aprobación Wompi</span><b>91.4%</b></div>
+          <div class="kpi"><span>Éxito YAuctions</span><b>87.2%</b></div>
+          <div class="kpi"><span>Compensación</span><b>6</b></div>
+          <div class="kpi"><span>Clientes con compra</span><b>74</b></div>
+        </div>
+
+        <section class="panel">
+          <h2>Ventas por día</h2>
+          <div class="row"><span>06/10</span><span>820</span></div><div class="bar"><i style="width:46%"></i></div>
+          <div class="row"><span>08/10</span><span>980</span></div><div class="bar"><i style="width:55%"></i></div>
+          <div class="row"><span>10/10</span><span>1,320</span></div><div class="bar"><i style="width:74%"></i></div>
+          <div class="row"><span>11/10</span><span>1,785</span></div><div class="bar"><i style="width:100%"></i></div>
+        </section>
+
+        <section class="panel">
+          <h2>Top categorías</h2>
+          <div class="row"><span>Electrónica</span><span>6,420</span></div><div class="bar"><i style="width:100%"></i></div>
+          <div class="row"><span>Moda</span><span>4,180</span></div><div class="bar"><i style="width:65%"></i></div>
+          <div class="row"><span>Coleccionables</span><span>2,910</span></div><div class="bar"><i style="width:45%"></i></div>
+        </section>
+
+        <section class="panel">
+          <h2>Bitácoras de integración</h2>
+          <table>
+            <thead>
+              <tr><th>Proveedor</th><th>Acción</th><th>Resultado</th><th>Orden</th><th>Detalle</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Wompi</td><td>Webhook</td><td><span class="badge ok">Approved</span></td>
+                <td>CL-20261012-778201</td><td>Pago confirmado y conciliado</td>
+              </tr>
+              <tr>
+                <td>YAuctions</td><td>ExecutePurchase</td><td><span class="badge ok">Success</span></td>
+                <td>CL-20261010-482193</td><td>Compra ejecutada en origen</td>
+              </tr>
+              <tr>
+                <td>YAuctions</td><td>ExecutePurchase</td><td><span class="badge warn">Rejected</span></td>
+                <td>CL-20261011-119844</td><td>Lote no disponible · compensación</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
     </div>
   </div>
-</div>
-</body></html>
+</body>
+</html>

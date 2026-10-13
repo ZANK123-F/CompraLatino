@@ -1,19 +1,21 @@
 # CompraLatino
 
-Plataforma intermediaria para compras en YAuctions (Japon), con cobro Wompi, API ASP.NET Core, frontend Next.js y panel BI.
+Plataforma intermediaria para compras en YAuctions (Japón), con cobro Wompi, API ASP.NET Core, frontend Next.js y panel BI.
 
-## Documentacion
+## Documentación de entrega
 
-- `documentacion/Fase-I/CompraLatino_Fase_I_Propuesta_de_Arquitectura.docx` — documento original de Fase I
-- `documentacion/Fase-II/CompraLatino_Fase_II_Documento_Acumulativo.docx` — documento acumulativo (Fase I + diseno)
-- `documentacion/Fase-III/CompraLatino_Fase_III_Documento_Acumulativo.docx` — documento acumulativo completo + BI
+- `documentacion/Fase-I/CompraLatino_Fase_I_Propuesta_de_Arquitectura.docx`
+- `documentacion/Fase-II/CompraLatino_Fase_II_Diseno_Arquitectura.docx`
+- `documentacion/Fase-III/CompraLatino_Fase_III_Desarrollo_y_BI.docx`
 
-## Codigo
+## Código
 
 - `codigo/backend` — API .NET
-- `codigo/frontend` — Next.js (si la API no responde, el cliente usa datos de muestra sin mostrar error)
+- `codigo/frontend` — Next.js
 
-## Ejecutar
+Si la API no está disponible, el frontend muestra datos de muestra sin interrumpir la experiencia.
+
+## Ejecución
 
 ```bash
 cd codigo/backend
@@ -25,5 +27,6 @@ npm run dev
 ```
 
 Cuentas demo:
-- cliente@demo.com / Cliente123!
-- admin@compralatino.com / Admin123!
+
+- `cliente@demo.com` / `Cliente123!`
+- `admin@compralatino.com` / `Admin123!`

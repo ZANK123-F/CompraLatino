@@ -1,0 +1,29 @@
+﻿erDiagram
+  USER_PROFILE ||--o{ ORDER : coloca
+  ORDER ||--|{ ORDER_ITEM : contiene
+  PRODUCT ||--o{ ORDER_ITEM : referenciado
+  ORDER ||--o| PAYMENT : cobra
+  ORDER ||--o{ INTEGRATION_EVENT : audita
+  USER_PROFILE {
+    int Id
+    string FirebaseUid
+    string Email
+    string Role
+  }
+  PRODUCT {
+    int Id
+    string ExternalId
+    string Category
+    decimal PriceJpy
+  }
+  ORDER {
+    int Id
+    string Code
+    string Status
+    decimal TotalLocal
+  }
+  PAYMENT {
+    string WompiTransactionId
+    string Status
+    decimal Amount
+  }

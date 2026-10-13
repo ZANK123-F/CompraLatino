@@ -1,0 +1,14 @@
+**/bin/
+**/obj/
+**/node_modules/
+**/.next/
+**/.env.local
+**/compralatino.db
+**/compralatino.db-*
+**/.DS_Store
+**/_fase1_extract.txt
+**/tools/node_modules/
+**/tools/gh/
+*.user
+*.suo
+.vs/

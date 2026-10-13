@@ -1,0 +1,62 @@
+﻿<!doctype html><html lang='es'><head><meta charset='utf-8'><title>Wireframes CompraLatino Fase II</title><style>
+  :root{--ink:#0b1f33;--sand:#f3e6c8;--coral:#c45c26;--sea:#1f6f8b;--line:#d5dde6}
+  *{box-sizing:border-box} body{margin:0;font-family:Georgia,serif;background:#eef2f6;color:var(--ink)}
+  .wrap{max-width:1100px;margin:24px auto;padding:0 16px}
+  .frame{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:28px}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--ink);color:var(--sand)}
+  .nav a{color:#dce7f2;margin-left:12px;font:14px/1.2 system-ui;text-decoration:none}
+  .hero{min-height:280px;background:linear-gradient(120deg,#0b1f33ee,#1f6f8bcc),url(https://images.unsplash.com/photo-1555529902-5261145633bf?w=1200) center/cover;color:#fff;padding:48px}
+  .hero h1{font-size:42px;margin:0 0 8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:18px}
+  .card{border:1px dashed var(--line);border-radius:12px;padding:14px;min-height:140px;background:#fafbfc}
+  .btn{display:inline-block;background:var(--coral);color:#fff;padding:10px 14px;border-radius:8px;font:14px system-ui;text-decoration:none}
+  .label{font:12px system-ui;color:#667}
+  h2{font-size:22px;margin:0 0 8px}
+  .kpi{font-size:28px;font-weight:700}
+  .bar{height:10px;background:#e8eef3;border-radius:99px;overflow:hidden;margin-top:8px}
+  .bar>i{display:block;height:100%;background:var(--sea)}
+  .note{font:13px system-ui;color:#456;margin:8px 0 18px}
+</style></head><body>
+<div class='wrap'>
+  <h1>Prototipos visuales CompraLatino (Fase II)</h1>
+  <p class='note'>Wireframes de baja-media fidelidad alineados a la arquitectura Next.js + API C# + Wompi + YAuctions.</p>
+
+  <div class='frame'>
+    <div class='top'><strong>CompraLatino</strong><div class='nav'><a>Catalogo</a><a>Carrito</a><a>Cuenta</a></div></div>
+    <div class='hero'>
+      <h1>CompraLatino</h1>
+      <p>Intermediacion de compras en YAuctions Japon</p>
+      <a class='btn' href='#'>Explorar catalogo</a>
+    </div>
+  </div>
+
+  <div class='frame'>
+    <div class='top'><strong>Catalogo</strong><div class='nav'><a>Buscar</a><div></div></div>
+    <div class='grid'>
+      <div class='card'><div class='label'>Categoria</div><h2>Producto A</h2><p>USD 00.00</p></div>
+      <div class='card'><div class='label'>Categoria</div><h2>Producto B</h2><p>USD 00.00</p></div>
+      <div class='card'><div class='label'>Categoria</div><h2>Producto C</h2><p>USD 00.00</p></div>
+    </div>
+  </div>
+
+  <div class='frame'>
+    <div class='top'><strong>Detalle / Checkout</strong></div>
+    <div class='grid'>
+      <div class='card' style='min-height:220px'>Imagen producto</div>
+      <div class='card'>
+        <h2>Ficha</h2>
+        <p>Precio JPY + precio local</p>
+        <p>Boton agregar / pagar con Wompi</p>
+        <a class='btn' href='#'>Pagar con Wompi</a>
+      </div>
+    </div>
+  </div>
+
+  <div class='frame'>
+    <div class='top'><strong>Historial y recomendaciones</strong></div>
+    <div class='grid'>
+      <div class='card'><h2>Orden CL-...</h2><p>Estado: Completed</p><p>Pago: Approved</p></div>
+      <div class='card'><h2>Para ti</h2><p>Basado en historial</p></div>
+    </div>
+  </div>
+</div></body></html>

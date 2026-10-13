@@ -1,0 +1,12 @@
+﻿stateDiagram-v2
+  [*] --> PendingPayment
+  PendingPayment --> Paid: Wompi Approved
+  PendingPayment --> Declined: Wompi Declined
+  Paid --> Executing: Invocar YAuctions
+  Executing --> Completed: Compra OK
+  Executing --> Compensation: Rechazo / falla
+  Compensation --> Completed: Reintento OK
+  Compensation --> Cancelled: Reembolso
+  Declined --> [*]
+  Completed --> [*]
+  Cancelled --> [*]

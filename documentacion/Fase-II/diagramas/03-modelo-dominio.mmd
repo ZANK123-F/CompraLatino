@@ -1,0 +1,34 @@
+﻿classDiagram
+  class UserProfile {
+    +int Id
+    +string FirebaseUid
+    +string Email
+    +string Role
+  }
+  class Product {
+    +string ExternalId
+    +decimal PriceJpy
+    +string Category
+  }
+  class Order {
+    +string Code
+    +string Status
+    +decimal TotalLocal
+  }
+  class OrderItem {
+    +int Quantity
+    +decimal UnitPriceLocal
+  }
+  class Payment {
+    +string WompiTransactionId
+    +string Status
+  }
+  class IntegrationEvent {
+    +string Provider
+    +string Result
+  }
+  UserProfile "1" --> "*" Order
+  Order "1" --> "*" OrderItem
+  OrderItem "*" --> "1" Product
+  Order "1" --> "0..1" Payment
+  Order "1" --> "*" IntegrationEvent

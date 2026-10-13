@@ -1,0 +1,21 @@
+﻿sequenceDiagram
+  actor U as Usuario
+  participant FE as Next.js
+  participant FA as Firebase Auth
+  participant API as API ASP.NET Core
+  participant W as Wompi
+  participant YA as YAuctions
+  participant DB as SQL Server
+  U->>FE: Busca y confirma carrito
+  FE->>FA: Sesion / ID token
+  FE->>API: POST /orders/checkout + token
+  API->>DB: Orden PendingPayment
+  API->>W: Crear transaccion
+  W-->>FE: Checkout / widget
+  U->>W: Paga
+  W->>API: Webhook Approved firmado
+  API->>DB: Pago Approved / Orden Paid
+  API->>YA: Ejecutar compra
+  YA-->>API: Exito / Rechazo
+  API->>DB: Completed o Compensation
+  API-->>FE: Historial y estado

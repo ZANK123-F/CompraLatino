@@ -1,0 +1,23 @@
+﻿flowchart TB
+  subgraph Canal["Canal multi-dispositivo"]
+    Web["Next.js responsive\nPC / Tablet / Smartphone"]
+  end
+  subgraph Firebase["Firebase"]
+    Hosting["Firebase Hosting"]
+    Auth["Firebase Authentication"]
+  end
+  subgraph Nucleo["Nucleo transaccional"]
+    API["ASP.NET Core API C#"]
+    SQL[(SQL Server)]
+  end
+  subgraph Externos["Servicios externos"]
+    Wompi["Wompi Pasarela"]
+    YA["YAuctions Japon"]
+  end
+  Web --> Hosting
+  Web --> Auth
+  Web -->|HTTPS + JWT/ID Token| API
+  API --> SQL
+  API --> Wompi
+  API --> YA
+  Wompi -->|Webhook firmado| API

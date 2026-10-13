@@ -1,0 +1,38 @@
+﻿<!doctype html><html lang='es'><head><meta charset='utf-8'><title>Prototipos BI CompraLatino Fase III</title><style>
+  :root{--ink:#0b1f33;--sand:#f3e6c8;--coral:#c45c26;--sea:#1f6f8b;--line:#d5dde6}
+  *{box-sizing:border-box} body{margin:0;font-family:Georgia,serif;background:#eef2f6;color:var(--ink)}
+  .wrap{max-width:1100px;margin:24px auto;padding:0 16px}
+  .frame{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:28px}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--ink);color:var(--sand)}
+  .nav a{color:#dce7f2;margin-left:12px;font:14px/1.2 system-ui;text-decoration:none}
+  .hero{min-height:280px;background:linear-gradient(120deg,#0b1f33ee,#1f6f8bcc),url(https://images.unsplash.com/photo-1555529902-5261145633bf?w=1200) center/cover;color:#fff;padding:48px}
+  .hero h1{font-size:42px;margin:0 0 8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:18px}
+  .card{border:1px dashed var(--line);border-radius:12px;padding:14px;min-height:140px;background:#fafbfc}
+  .btn{display:inline-block;background:var(--coral);color:#fff;padding:10px 14px;border-radius:8px;font:14px system-ui;text-decoration:none}
+  .label{font:12px system-ui;color:#667}
+  h2{font-size:22px;margin:0 0 8px}
+  .kpi{font-size:28px;font-weight:700}
+  .bar{height:10px;background:#e8eef3;border-radius:99px;overflow:hidden;margin-top:8px}
+  .bar>i{display:block;height:100%;background:var(--sea)}
+  .note{font:13px system-ui;color:#456;margin:8px 0 18px}
+</style></head><body>
+<div class='wrap'>
+  <h1>Prototipos paneles BI CompraLatino (Fase III)</h1>
+  <p class='note'>Esquemas del producto final de inteligencia de negocios para toma de decisiones.</p>
+  <div class='frame'>
+    <div class='top'><strong>Admin BI</strong><div class='nav'><a>Ordenes</a><a>Pagos</a><a>YAuctions</a></div></div>
+    <div class='grid'>
+      <div class='card'><div class='label'>KPI</div><div class='kpi'>128</div><p>Ordenes</p></div>
+      <div class='card'><div class='label'>KPI</div><div class='kpi'>92%</div><p>Aprobacion Wompi</p></div>
+      <div class='card'><div class='label'>KPI</div><div class='kpi'>88%</div><p>Exito YAuctions</p></div>
+      <div class='card'><div class='label'>KPI</div><div class='kpi'>USD 4.2k</div><p>Ingresos</p></div>
+    </div>
+    <div class='grid'>
+      <div class='card'><h2>Ventas por dia</h2><div class='bar'><i style='width:70%'></i></div><div class='bar'><i style='width:45%'></i></div><div class='bar'><i style='width:90%'></i></div></div>
+      <div class='card'><h2>Top categorias</h2><div class='bar'><i style='width:80%'></i></div><div class='bar'><i style='width:55%'></i></div><div class='bar'><i style='width:40%'></i></div></div>
+      <div class='card'><h2>Embudo Wompi</h2><p>Pendientes / Aprobados / Declinados</p></div>
+      <div class='card'><h2>Resultados YAuctions</h2><p>Exito vs Rechazo / Compensacion</p></div>
+    </div>
+  </div>
+</div></body></html>
